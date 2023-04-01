@@ -300,3 +300,12 @@ func (d *Dict) values() []any {
 	})
 	return values
 }
+func (d *Dict) clear() {
+	d.reHashIndex = -1
+	d.ht[0] = dictht{
+		table:    make([]*dictEntry, dictMinSize),
+		size:     dictMinSize,
+		sizemask: dictMinSize - 1,
+		used:     0,
+	}
+}
